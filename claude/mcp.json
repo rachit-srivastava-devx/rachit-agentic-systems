@@ -1,0 +1,24 @@
+{
+    "mcpServers": {
+        "github": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-github"
+            ],
+            "env": {
+                "GITHUB_PERSONAL_ACCESS_TOKEN": "<SET_YOUR_OWN_GITHUB_PAT>"
+            }
+        },
+        "sequential-thinking": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-sequential-thinking"
+            ]
+        },
+        "codebase-memory-mcp": {
+            "command": "/Users/rachitsrivastava/.local/bin/codebase-memory-mcp"
+        }
+    }
+}

@@ -1,0 +1,160 @@
+{
+  "name": "kirocrew",
+  "description": "Autonomous personal AI agent \u2014 schedules recurring tasks, spawns parallel workers, learns from corrections, and operates independently via the dashboard, CLI, and messaging channels",
+  "model": "auto",
+  "tools": [
+    "execute_bash",
+    "fs_read",
+    "fs_write",
+    "code",
+    "grep",
+    "glob",
+    "web_fetch",
+    "web_search",
+    "introspect",
+    "session",
+    "report",
+    "tool_search",
+    "@kirocrew-cron",
+    "@kirocrew-core",
+    "@kirocrew-computer",
+    "@auto-improvement:auto-improvement",
+    "@github",
+    "@sequential-thinking",
+    "@codebase-memory-mcp",
+    "@codex-review",
+    "@go-test"
+  ],
+  "allowedTools": [
+    "web_fetch",
+    "web_search",
+    "introspect",
+    "session",
+    "report",
+    "@kirocrew-cron/cron_list",
+    "@kirocrew-cron/cron_pause",
+    "@kirocrew-cron/cron_resume",
+    "@kirocrew-cron/cron_trigger",
+    "@kirocrew-cron/cron_remove",
+    "@kirocrew-cron/cron_remove_all",
+    "@kirocrew-core",
+    "@kirocrew-cron",
+    "@github",
+    "@sequential-thinking",
+    "@codebase-memory-mcp",
+    "@codex-review",
+    "@go-test"
+  ],
+  "resources": [
+    "file://.kiro/steering/**/*.md"
+  ],
+  "includeMcpJson": false,
+  "hooks": {
+    "postToolUse": [
+      {
+        "matcher": "execute_bash",
+        "command": "{ echo \"$(date -u +%Y-%m-%dT%H:%M:%SZ) BASH:\"; cat; echo; } >> \"${KIROCREW_HOME:-$HOME/.kiro/crew}/audit.log\""
+      }
+    ]
+  },
+  "prompt": "file:///Applications/KiroCrew.app/Contents/Resources/backend-dist/kirocrew-backend-arm64/lib/python3.12/site-packages/kiro_crew/config/prompt.md",
+  "mcpServers": {
+    "kirocrew-cron": {
+      "command": "/Applications/KiroCrew.app/Contents/Resources/backend-dist/kirocrew-backend-arm64/bin/kirocrew",
+      "args": [
+        "mcp-cron"
+      ]
+    },
+    "kirocrew-core": {
+      "command": "/Applications/KiroCrew.app/Contents/Resources/backend-dist/kirocrew-backend-arm64/bin/kirocrew",
+      "args": [
+        "mcp-core"
+      ]
+    },
+    "codebase-memory-mcp": {
+      "command": "/Users/rachitsrivastava/.local/bin/codebase-memory-mcp"
+    },
+    "cua_repl": {
+      "command": "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "disabled": true
+    },
+    "auto-improvement:auto-improvement": {
+      "command": "/Applications/KiroCrew.app/Contents/Resources/backend-dist/kirocrew-backend-arm64/bin/python3.12",
+      "args": [
+        "-m",
+        "kiro_crew.apps.builtins.auto_improvement.backend.mcp_server"
+      ],
+      "autoApprove": [
+        "get_status",
+        "get_ruler",
+        "list_findings",
+        "get_finding",
+        "get_progress",
+        "get_deps"
+      ]
+    },
+    "github": {
+      "command": "/opt/homebrew/bin/npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<SET_YOUR_OWN_GITHUB_PAT>"
+      },
+      "autoApprove": []
+    },
+    "sequential-thinking": {
+      "command": "/opt/homebrew/bin/npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "autoApprove": []
+    },
+    "codex-review": {
+      "command": "/opt/homebrew/bin/node",
+      "args": [
+        "/Users/rachitsrivastava/.kiro/mcp-servers/codex-review-mcp.mjs"
+      ],
+      "autoApprove": [
+        "codex_review"
+      ]
+    },
+    "go-test": {
+      "command": "/opt/homebrew/bin/node",
+      "args": [
+        "/Users/rachitsrivastava/.kiro/mcp-servers/go-test-mcp.mjs"
+      ],
+      "autoApprove": [
+        "go_compile_proof",
+        "go_vet"
+      ]
+    }
+  },
+  "permissions": {
+    "rules": [
+      {
+        "capability": "mcp",
+        "match": [
+          "kirocrew-core/*",
+          "kirocrew-cron/cron_list",
+          "kirocrew-cron/cron_pause",
+          "kirocrew-cron/cron_remove",
+          "kirocrew-cron/cron_remove_all",
+          "kirocrew-cron/cron_resume",
+          "kirocrew-cron/cron_trigger"
+        ],
+        "effect": "allow"
+      },
+      {
+        "capability": "web_fetch",
+        "effect": "allow"
+      },
+      {
+        "capability": "web_search",
+        "effect": "allow"
+      }
+    ]
+  }
+}

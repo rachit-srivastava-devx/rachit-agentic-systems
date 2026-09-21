@@ -1,0 +1,302 @@
+model = "gpt-5.6-luna"
+model_reasoning_effort = "high"
+
+notify = ["/Users/rachitsrivastava/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+personality = "pragmatic"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/Users/rachitsrivastava/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/Users/rachitsrivastava/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."build-macos-apps@openai-curated"]
+enabled = true
+
+[plugins."build-web-apps@openai-curated"]
+enabled = true
+
+[plugins."render@openai-curated"]
+enabled = true
+
+[plugins."codex-security@openai-curated"]
+enabled = true
+
+[plugins."figma@openai-curated"]
+enabled = true
+
+[plugins."openai-developers@openai-curated"]
+enabled = true
+
+[plugins."remotion@openai-curated"]
+enabled = true
+
+[plugins."hyperframes@openai-curated"]
+enabled = true
+
+[plugins."hugging-face@openai-curated"]
+enabled = true
+
+[plugins."superpowers@openai-curated"]
+enabled = true
+
+[plugins."cloudflare@openai-curated"]
+enabled = true
+
+[plugins."base44@openai-curated"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[projects."/Users/rachitsrivastava/viralEquation/ideas/ai-company"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation/ideas"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation/experiments/swappable-brains"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation/experiments/interview_prep"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation/experiments/planner"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation/experiments/cosmos"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation/ideas/ApplyPilot"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation/experiments/focus-reading"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation/experiments/pilot"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/mama ka whatsapp app"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation/experiments/whatsapp-for-business"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation/freelance/piyush-portfolio"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/viralEquation/freelance"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/youtube/Principal Engineering/blueprints"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/youtube/Principal Engineering"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-08-06/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-08-06/realtime-voice-chat-2"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-08-08/gi"]
+trust_level = "trusted"
+
+[projects."/private/tmp/claude-501/-Users-rachitsrivastava-youtube-Principal-Engineering/f06a9a8b-caa1-41a3-9bc2-a3bdd4efc5db/scratchpad/codexsmoke"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/youtube/Principal Engineering/fleet/v2"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/youtube/Principal Engineering/fleet"]
+trust_level = "trusted"
+
+[projects."/private/var/folders/_x/39gv9nf93lbfh7p1fvzl1nn80000gn/T/rl-target.o3Sh8D"]
+trust_level = "trusted"
+
+[projects."/private/tmp/claude-501/-Users-rachitsrivastava-youtube-Principal-Engineering/b37a3eb5-0e21-47ec-a77e-da6a2a989a63/scratchpad/codex-smoke"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/youtube/Principal Engineering/fleet-rs"]
+trust_level = "trusted"
+
+[projects."/private/tmp/claude-501/-Users-rachitsrivastava-youtube-Principal-Engineering-fleet/3e5165ee-d056-4d74-9c21-d83c8a3b7e55/scratchpad/demo-project"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Developer/devx"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-08-24/1-create-a-new-folder-named"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Developer/devx/practice-sow"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-08-25/install-x20"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Developer/devx/posx-comet-backend"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-08-25/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-08-26/i-n"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/youtube/Principal Engineering/company/products/adhd-focus-orb"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-09-03/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-09-03/realtime-voice-chat-2"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-09-03/realtime-voice-chat-3"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Developer/devx/repo-analyser"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-09-09/create-an-image-of"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Documents/Codex/2026-09-11/create-an-image-of"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/youtube/Principal Engineering/Light"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Developer/devx/chronicle_button"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Developer/oberon"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Developer/oberon/btngo"]
+trust_level = "trusted"
+
+[projects."/Users/rachitsrivastava/Developer/devx/jev-demo"]
+trust_level = "trusted"
+
+[desktop]
+appearanceTheme = "dark"
+preventSleepWhileRunning = true
+keepRemoteControlAwakeWhilePluggedIn = true
+git-show-sidebar-pr-icons = true
+selected-avatar-id = "fireball"
+followUpQueueMode = "queue"
+dock-icon-preference = "codex-system"
+realtimeVoiceScreenContextEnabled = true
+
+[desktop.open-in-target-preferences]
+global = "cursor"
+
+[features]
+memories = true
+js_repl = false
+
+[memories]
+generate_memories = true
+use_memories = true
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/rachitsrivastava/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/rachitsrivastava/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "0"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.908.70816"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/rachitsrivastava/.codex/plugins/cache/openai-bundled/browser/26.908.70816/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_SERVICE_PATH = "/Users/rachitsrivastava/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+
+[mcp_servers.codebase-memory-mcp]
+command = "/Users/rachitsrivastava/.local/bin/codebase-memory-mcp"
+
+[mcp_servers.codebase-memory-mcp.tools.search_graph]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.get_architecture]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.get_code_snippet]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.trace_path]
+approval_mode = "approve"
+
+[mcp_servers.codebase-memory-mcp.tools.query_graph]
+approval_mode = "approve"
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
+
+[mcp_servers.cua_repl]
+command = "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
+enabled = false
+
+# >>> codebase-memory-mcp SessionStart >>>
+[[hooks.SessionStart]]
+matcher = "startup|resume|clear|compact"
+
+[[hooks.SessionStart.hooks]]
+type = "command"
+command = 'echo "Code discovery: prefer codebase-memory-mcp (search_graph, trace_path, get_code_snippet, query_graph, search_code) over grep/file-read; run index_repository first if the project is not indexed."'
+
+[hooks.state]
+
+[hooks.state."/Users/rachitsrivastava/.codex/config.toml:session_start:0:0"]
+trusted_hash = "sha256:ed997f3f9766959ba56dc2243cd02468d6eadad80d92b7f5a650e6fc0fb0c050"
+
+[shell_environment_policy.set]
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "9230e2bd8b24b7ac7a0ba6774c64bf0d78ecdabbdd91d0ed627b02a587bae2df"
+# <<< codebase-memory-mcp SessionStart <<<

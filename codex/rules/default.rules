@@ -1,0 +1,5 @@
+prefix_rule(pattern=["/Users/rachitsrivastava/.local/bin/uv", "run", "pytest"], decision="allow")
+prefix_rule(pattern=[".venv/bin/pytest"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-c", "PATH=/Users/rachitsrivastava/.nvm/versions/node/v22.13.0/bin:/opt/homebrew/bin:/usr/bin:/bin /opt/homebrew/bin/npm install"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-c", "PATH=/Users/rachitsrivastava/.nvm/versions/node/v22.13.0/bin:/opt/homebrew/bin:/usr/bin:/bin /opt/homebrew/bin/npm run preview -- --host 127.0.0.1 --port 6174"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-c", "PATH=/Users/rachitsrivastava/.nvm/versions/node/v22.13.0/bin:/opt/homebrew/bin:/usr/bin:/bin /opt/homebrew/bin/npm run preview -- --host 127.0.0.1 --port 6173"], decision="allow")

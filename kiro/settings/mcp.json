@@ -1,0 +1,36 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<SET_YOUR_OWN_GITHUB_PAT>"
+      },
+      "disabled": false,
+      "autoApprove": []
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "codebase-memory-mcp": {
+      "command": "/Users/rachitsrivastava/.local/bin/codebase-memory-mcp",
+      "disabled": false,
+      "autoApprove": ["search_graph", "get_architecture", "get_code_snippet", "trace_path", "query_graph", "search_code"]
+    },
+    "codex-review": {
+      "command": "node",
+      "args": ["/Users/rachitsrivastava/.kiro/mcp-servers/codex-review-mcp.mjs"],
+      "disabled": false,
+      "autoApprove": ["codex_review"]
+    },
+    "go-test": {
+      "command": "node",
+      "args": ["/Users/rachitsrivastava/.kiro/mcp-servers/go-test-mcp.mjs"],
+      "disabled": false,
+      "autoApprove": ["go_compile_proof", "go_vet"]
+    }
+  }
+}

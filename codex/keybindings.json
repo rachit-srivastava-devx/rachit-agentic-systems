@@ -1,0 +1,14 @@
+[
+  {
+    "command": "globalDictationHold",
+    "key": null
+  },
+  {
+    "command": "globalDictationToggle",
+    "key": null
+  },
+  {
+    "command": "realtimeVoice",
+    "key": null
+  }
+]

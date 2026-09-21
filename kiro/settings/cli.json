@@ -1,0 +1,16 @@
+{
+  "autocomplete.alwaysSuggestCurrentToken": true,
+  "autocomplete.firstTokenCompletion": true,
+  "autocomplete.fontFamily": "roboto-light",
+  "autocomplete.fontSize": 14,
+  "autocomplete.fuzzySearch": true,
+  "autocomplete.hideAutoExecuteSuggestion": true,
+  "autocomplete.immediatelyExecuteAfterSpace": true,
+  "autocomplete.immediatelyRunDangerousCommands": true,
+  "autocomplete.onlyShowOnTab": true,
+  "autocomplete.preferVerboseSuggestions": true,
+  "autocomplete.scrollWrapAround": true,
+  "codeWhisperer.shareCodeWhispererContentWithAWS": false,
+  "telemetry.enabled": false,
+  "mcp.loadedBefore": true
+}

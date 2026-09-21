@@ -1,0 +1,26 @@
+rules:
+  - capability: shell
+    effect: allow
+    match:
+      - "*"
+  - capability: fs_read
+    effect: allow
+    match:
+      - "*"
+  - capability: fs_write
+    effect: allow
+    match:
+      - "*"
+  - capability: web_search
+    effect: allow
+  - capability: mcp
+    effect: allow
+    match:
+      - kirocrew-core/spawn_run
+  - capability: web_fetch
+    effect: allow
+    match:
+      - raw.githubusercontent.com
+      - github.com
+      - github.github.com
+      - docs.github.com

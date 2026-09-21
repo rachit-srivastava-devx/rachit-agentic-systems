@@ -1,0 +1,33 @@
+#!/bin/bash
+# resource-safety-gate: blocks Agent/Task tool calls when system memory
+# pressure is already critical.
+#
+# Added 2026-09-05 after two real incidents in one session on this machine:
+# a kernel panic (mutmut fork-crash-loop, watchdog timeout, 14MB free RAM)
+# and a severe resource-contention event (this session's own process
+# ballooned toward 87GB and was force-quit), both preceded by launching more
+# heavy/parallel subprocess-spawning work while memory was already strained.
+# See memory: macos-python-multiprocessing-crash-risk.md for the full history
+# and why swap usage (not free-RAM pages, which macOS keeps low even when
+# healthy) is the signal used here: 350MB used was measured as the healthy
+# baseline, 17.9-20.5GB used was measured during both incidents.
+#
+# Protocol: exit 2 + stderr blocks the PreToolUse call (Claude Code hook
+# spec, code.claude.com/docs/en/hooks-guide.md); exit 0 allows it silently.
+
+THRESHOLD_MB=6000
+
+SWAP_USED_MB=$(sysctl -n vm.swapusage 2>/dev/null | sed -nE 's/.*used = ([0-9.]+)M.*/\1/p')
+[ -n "$SWAP_USED_MB" ] || exit 0
+
+SWAP_USED_INT=${SWAP_USED_MB%.*}
+case "$SWAP_USED_INT" in
+  ''|*[!0-9]*) exit 0 ;;
+esac
+
+if [ "$SWAP_USED_INT" -ge "$THRESHOLD_MB" ]; then
+  echo "[resource-safety-gate] Blocked: swap usage is ${SWAP_USED_MB}MB, at/above the ${THRESHOLD_MB}MB safety threshold. This machine has had real crash/resource-crisis incidents from launching agents or heavy subprocess work while memory was already this strained (see macos-python-multiprocessing-crash-risk.md). Check 'sysctl vm.swapusage' and 'uptime', and wait for it to drop or close other heavy applications before retrying. If this is a false positive or you need to proceed anyway, ask the user directly, or the user can adjust/remove this gate at ~/.claude/hooks/resource-safety-gate." >&2
+  exit 2
+fi
+
+exit 0
