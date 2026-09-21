@@ -16,7 +16,7 @@ Inside each:
 - `mcp.json` / `config.toml` / `settings.json` — MCP servers, permissions, hooks wiring
 - `hooks/`, `steering/`, `rules/` — tool-specific automation and guardrails
 
-**Not included, on purpose:** `auth.json`, OAuth tokens, session/conversation history, sqlite databases, logs, caches, cookies. Those are per-person credentials and machine state — never shared, never committed. `node_modules`, compiled binaries, and nested `.git` dirs were also stripped (vendored deps, not config — reinstalled by each tool/skill's own setup step).
+**Not included, on purpose:** `auth.json`, OAuth tokens, session/conversation history, sqlite databases, logs, caches, cookies, and Codex's local per-project trust list (real folder paths from this machine). Those are per-person credentials and machine state — never shared, never committed. `node_modules`, compiled binaries, and nested `.git` dirs were also stripped (vendored deps, not config — reinstalled by each tool/skill's own setup step).
 
 ## Notable skills
 
@@ -79,6 +79,26 @@ MCP (Model Context Protocol) servers give each tool extra tools beyond its built
 **Codex** (`codex/rules/default.rules`) — a prefix-match allowlist of exact commands (specific `pytest`/`npm` invocations) that run without a permission prompt.
 
 **Kiro** (`kiro/steering/agent-task-process.md`) — the standing task-execution process steering doc, always loaded into context.
+
+## Settings, permissions & plugins
+
+Config that shapes how each tool behaves, beyond skills/agents/MCP:
+
+**Claude** (`claude/`)
+- `settings.json` — top-level behavior: hook wiring, `enabledPlugins`, `extraKnownMarketplaces`, theme, notification toggles, auto-compact window.
+- `plugins-installed.json` / `plugins-marketplaces.json` — which plugin marketplaces are registered (`claude-plugins-official`, `i-have-adhd`) and which plugins are actually installed from them (`i-have-adhd`, which drives the always-on ADHD-formatted output style).
+- `mcp.json` — see **MCP servers** above.
+
+**Kiro** (`kiro/settings/`, `kiro/argv.json`)
+- `permissions.yaml` — the capability allowlist: `shell`, `fs_read`, `fs_write` all wide open (`*`), `web_search` open, `web_fetch` restricted to GitHub domains, `mcp` restricted to `kirocrew-core/spawn_run`. This is the actual authorization boundary for what a Kiro session can touch unprompted — tighten this per-teammate risk tolerance rather than copying it verbatim.
+- `cli.json` — editor/terminal UX prefs (autocomplete behavior, font, telemetry off, dangerous-command auto-execute on — worth a second look before adopting as-is).
+- `argv.json` — low-level Electron/VS Code launch flags (crash reporting, hardware acceleration). Rarely needs changing.
+- `mcp.lock` (not copied — a runtime lockfile, regenerates itself) and `powers-installed.json` — Kiro's plugin-equivalent ("powers"); currently empty on this machine.
+
+**Codex** (`codex/config.toml`, `codex/keybindings.json`)
+- `config.toml` — the single biggest config file: model + reasoning-effort defaults (`gpt-5.6-luna`, `high`), personality, marketplaces (`openai-bundled`, `openai-primary-runtime`), the full list of enabled plugins (`documents`, `spreadsheets`, `presentations`, `browser`, `chrome`, `pdf`, `visualize`, `codex-security`, `figma`, `cloudflare`, etc. — one `[plugins."name@marketplace"]` block per plugin), desktop app preferences (theme, "open in" target editor), and the `[mcp_servers.*]` blocks documented above.
+- A per-project trust list (`[projects."/path/to/project"]`) is generated locally as you use Codex and was **stripped from this export** — it's a list of your own machine's folder paths, not shared config; it rebuilds itself as each teammate opens their own projects.
+- `keybindings.json` — global shortcut overrides (currently just clears default bindings for dictation/realtime-voice commands).
 
 ## Bootstrap on a new machine
 
