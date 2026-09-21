@@ -41,6 +41,45 @@ Everything else is narrower single-purpose skills (PDF/DOCX/XLSX generation, dom
 grep -h "^description:" claude/*/SKILL.md | sort
 ```
 
+## MCP servers
+
+MCP (Model Context Protocol) servers give each tool extra tools beyond its built-ins — configured in `claude/mcp.json`, `kiro/settings/mcp.json`, and inside `codex/config.toml`'s `[mcp_servers.*]` blocks. What's wired up:
+
+| Server | In | What it gives the agent |
+|---|---|---|
+| **`github`** | Claude, Kiro | Read/write GitHub via API — issues, PRs, files, search — without shelling out to `gh`. Needs `GITHUB_PERSONAL_ACCESS_TOKEN` (placeholder in this repo, see **Secrets**). |
+| **`sequential-thinking`** | Claude, Kiro | Structured multi-step reasoning scratchpad for problems that need explicit, revisable steps before answering. |
+| **`codebase-memory-mcp`** | Claude, Kiro, Codex | A persistent knowledge graph of the codebase: `search_graph`, `trace_path` (call chains / data flow), `get_code_snippet`, `query_graph` (Cypher), `get_architecture`. Session hooks push the agent to use this instead of grep/read for structural code questions — run `index_repository` once per project first. Binary lives at `~/.local/bin/codebase-memory-mcp` (not in this repo — install separately). |
+| **`codex-review`** | Kiro | Wraps a review call out to Codex as a second opinion on a diff. Script: `kiro/mcp-servers/codex-review-mcp.mjs`. |
+| **`go-test`** | Kiro | Go-specific test tooling — `go_compile_proof`, `go_vet` — auto-approved so it can run without a permission prompt each time. Script: `kiro/mcp-servers/go-test-mcp.mjs`. |
+| **`computer-use`**, **`cua_repl`**, **`node_repl`** | Codex | Codex-native: screen/computer control, and a persistent Node REPL for iterative scripting inside a session. |
+
+`kiro/mcp-servers/gates/` (`head-pin-guard.sh`, `evidence-gate.sh`) are supporting shell scripts the above MCP servers shell out to — not servers themselves.
+
+## Agents & hooks
+
+**Claude subagents** (`claude/agents/*.md`) — specialized roles the main session can delegate to, each pinned to a model for cost/capability fit:
+
+| Agent | Model | Role |
+|---|---|---|
+| `lead-architect` | Opus | Plans and reviews only — writes the contract/acceptance suite first, makes architecture decisions, gives merge verdicts. Never writes bulk code. |
+| `mid-engineer` | Sonnet | Implements a briefed task in its own worktree until the pre-written acceptance tests pass. |
+| `junior-engineer` | Haiku | Cheapest model — boilerplate, scaffolding, config files, mechanical renames, docs. |
+| `researcher` | Haiku | Read-only fan-out search; returns a tight summary, never file dumps, never writes code. |
+| `verifier` | Sonnet | Independent, adversarial-by-default reproduction of any "done" claim before it's accepted. |
+
+**Kiro agents** (`kiro/agents/*.json`) are the KiroCrew worker fleet — `kirocrew` (main), `kirocrew-conductor`/`kirocrew-pipeline-conductor` (orchestrate other workers), `kirocrew-heartbeat` (read-only polling worker, runs on a schedule, no write tools), `kirocrew-research` (autonomous multi-cycle research loop that logs findings to disk), `kirocrew-knowledge`/`kirocrew-lite` (lighter-weight variants).
+
+**Claude Code hooks** (`claude/hooks/`) — shell scripts the harness runs automatically at fixed points:
+- `l8-code-router.sh` — on every prompt, detects coding requests and routes them into the `l8-code` skill.
+- `cbm-code-discovery-gate` — before a tool call, nudges toward `codebase-memory-mcp` search over raw grep/read.
+- `cbm-session-reminder` — on session start/resume, reminds the agent the code graph exists.
+- `resource-safety-gate` — blocks spawning more subagents when system memory is already critical.
+
+**Codex** (`codex/rules/default.rules`) — a prefix-match allowlist of exact commands (specific `pytest`/`npm` invocations) that run without a permission prompt.
+
+**Kiro** (`kiro/steering/agent-task-process.md`) — the standing task-execution process steering doc, always loaded into context.
+
 ## Bootstrap on a new machine
 
 ### Claude Code
