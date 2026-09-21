@@ -1,0 +1,1 @@
+/Users/rachitsrivastava/.claude/skills/gstack/autoplan/SKILL.md
